@@ -12,8 +12,8 @@ INPUT_RECORD WindowBufferSizeEvent::ToInputRecord() const noexcept
 {
     INPUT_RECORD record{ 0 };
     record.EventType = WINDOW_BUFFER_SIZE_EVENT;
-    record.Event.WindowBufferSizeEvent.dwSize.X = ::base::saturated_cast<short>(_size.X);
-    record.Event.WindowBufferSizeEvent.dwSize.Y = ::base::saturated_cast<short>(_size.Y);
+    record.Event.WindowBufferSizeEvent.dwSize.X = ::base::saturated_cast<short>(_size.width);
+    record.Event.WindowBufferSizeEvent.dwSize.Y = ::base::saturated_cast<short>(_size.height);
     return record;
 }
 

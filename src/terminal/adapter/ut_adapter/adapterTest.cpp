@@ -1401,10 +1401,10 @@ public:
             til::point coordCursorExpectedFirst{ _testGetSet->_textBuffer->GetCursor().GetPosition() };
 
             // to get to VT, we have to adjust it to its position relative to the viewport top.
-            coordCursorExpectedFirst -= { 0, _testGetSet->_viewport.Top };
+            coordCursorExpectedFirst -= til::point{ 0, _testGetSet->_viewport.Top };
 
             // Then note that VT is 1,1 based for the top left, so add 1. (The rest of the console uses 0,0 for array index bases.)
-            coordCursorExpectedFirst += { 1, 1 };
+            coordCursorExpectedFirst += til::point{ 1, 1 };
 
             VERIFY_IS_TRUE(_pDispatch->DeviceStatusReport(DispatchTypes::AnsiStatusType::CPR_CursorPositionReport));
 
@@ -1414,7 +1414,7 @@ public:
             _testGetSet->_textBuffer->GetCursor().SetPosition(cursorPos);
 
             auto coordCursorExpectedSecond{ coordCursorExpectedFirst };
-            coordCursorExpectedSecond += { 1, 1 };
+            coordCursorExpectedSecond += til::point{ 1, 1 };
 
             VERIFY_IS_TRUE(_pDispatch->DeviceStatusReport(DispatchTypes::AnsiStatusType::CPR_CursorPositionReport));
 

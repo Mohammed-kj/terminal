@@ -358,7 +358,7 @@ class UiaTextRangeTests
         // the variables from the generated tests.
 
         // fill first half of text buffer with text
-        for (til::CoordType i = 0; i < _pTextBuffer->TotalRowCount() / 2; ++i)
+        for (auto i = 0; i < _pTextBuffer->TotalRowCount() / 2; ++i)
         {
             auto& row = _pTextBuffer->GetRowByOffset(i);
             auto& charRow = row.GetCharRow();
@@ -492,11 +492,11 @@ class UiaTextRangeTests
     TEST_METHOD(ExpandToEnclosingUnit)
     {
         // Let's start by filling the text buffer with something useful:
-        for (til::CoordType i = 0; i < _pTextBuffer->TotalRowCount(); ++i)
+        for (auto i = 0; i < _pTextBuffer->TotalRowCount(); ++i)
         {
             auto& row = _pTextBuffer->GetRowByOffset(i);
             auto& charRow = row.GetCharRow();
-            for (til::CoordType j = 0; j < charRow.size(); ++j)
+            for (auto j = 0; j < charRow.size(); ++j)
             {
                 // every 5th cell is a space, otherwise a letter
                 // this is used to simulate words
@@ -1340,9 +1340,9 @@ class UiaTextRangeTests
         // GH#6986: This is used as the "end of the buffer" to help screen readers run faster
         //          instead of parsing through thousands of empty lines of text.
         const til::point documentEndInclusive{ bufferSize.right - 1, _pTextBuffer->GetLastNonSpaceCharacter().Y };
-        const til::point documentEndExclusive{ static_cast<til::CoordType>(bufferSize.left), documentEndInclusive.y + 1 };
+        const til::point documentEndExclusive{ bufferSize.left, documentEndInclusive.y + 1 };
 
-        const til::point lastLineStart{ static_cast<til::CoordType>(bufferSize.left), documentEndInclusive.y };
+        const til::point lastLineStart{ bufferSize.left, documentEndInclusive.y };
         const auto secondToLastLinePos{ point_offset_by_line(lastLineStart, bufferSize, -1) };
         const til::point secondToLastCharacterPos{ documentEndInclusive.x - 1, documentEndInclusive.y };
 
@@ -1867,7 +1867,7 @@ class UiaTextRangeTests
         //   |XXX   XXX   XXX|
         //   |_______________|
         {
-            til::CoordType i = 0;
+            auto i = 0;
             auto iter{ _pTextBuffer->GetCellDataAt(origin) };
             const auto segment{ bufferSize.width() / 5 };
             while (iter.Pos() != documentEnd)
@@ -1935,7 +1935,7 @@ class UiaTextRangeTests
         // |                              |
         // +------------------------------+
         {
-            til::CoordType i = 0;
+            auto i = 0;
             auto iter{ _pTextBuffer->GetCellDataAt(bufferSize.origin()) };
             const auto segment{ bufferSize.width() / 10 };
             auto fill{ true };

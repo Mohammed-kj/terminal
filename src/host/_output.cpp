@@ -304,7 +304,7 @@ void WriteToScreen(SCREEN_INFORMATION& screenInfo, const Viewport& region)
         auto& gci = ServiceLocator::LocateGlobals().getConsoleInformation();
         if (enablePowershellShim && gci.IsInVtIoMode())
         {
-            const til::size currentBufferDimensions{ screenInfo.GetBufferSize().Dimensions() };
+            const auto currentBufferDimensions{ screenInfo.GetBufferSize().Dimensions() };
 
             const auto wroteWholeBuffer = lengthToWrite == (currentBufferDimensions.area<size_t>());
             const auto startedAtOrigin = startingCoordinate == til::point{ 0, 0 };
